@@ -1,4 +1,4 @@
-# Full Stack Web Developer Nanodegree
+# Full Stack Web Developer Nanodegree [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 ### About
 This repository contains project work for Udacity's [Full Stack Web Developer Nanodegree](https://www.udacity.com/course/nd004).
