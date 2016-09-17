@@ -5,4 +5,4 @@ I have written server-side code to store a list of my favorite movies, including
 I serve this data as a web page allowing visitors to review the movies and watch the trailers.
 
 ## How to run
-To run the script, clone this repository directory and run entertainment_center.py. You can view the page by opening fresh_tomatoes.html.
+Clone this repository directory and run the script entertainment_center.py. You can view the page by opening fresh_tomatoes.html.
