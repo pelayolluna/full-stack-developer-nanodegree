@@ -44,4 +44,5 @@ gladiator = media.Movie("Gladiator", storyline, image, trailer)
 # Movie's array
 movies = [fight_club, the_usual_suspects, inception, ex_machina, gladiator]
 
+# Open web interface
 fresh_tomatoes.open_movies_page(movies)
