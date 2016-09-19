@@ -5,10 +5,13 @@ This repository contains project work for Udacity's [Full Stack Web Developer Na
 
 ## Projects
 - **Project 1** - Movie Trailer Website
-- **Project 2** - Tournament Results
-- **Project 3** - Item Catalog
-- **Project 4** - Conference Organization App
-- **Project 5** - Linux-based Server Configuration
+- **Project 2** - Build a Portfolio Site
+- **Project 3** - Multi User Blog
+- **Project 4** - Tournament Results
+- **Project 5** - Item Catalog
+- **Project 6** - Neighborhood Map
+- **Project 7** - Design a Game
+- **Project 8** - Linux Server Configuration
 
 ## Courses
 - Programming Foundations with Python
