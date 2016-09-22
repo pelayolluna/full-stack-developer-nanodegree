@@ -7,8 +7,7 @@ insomnia by attending disease support groups until he meets a
 kindred spirit -and soap salesman (Brad Pitt). Together they form
 Fight Club, where young men can exert their frustrations and angst
 upon one another.'''
-image = '''https://upload.wikimedia.org/wikipedia/en/thumb/f
-/fc/Fight_Club_poster.jpg/220px-Fight_Club_poster.jpg'''
+image = "https://upload.wikimedia.org/wikipedia/en/thumb/f/fc/Fight_Club_poster.jpg/220px-Fight_Club_poster.jpg"# noqa
 trailer = "https://www.youtube.com/watch?v=SUXWAEX2jlg"
 
 # Object instance
@@ -24,8 +23,7 @@ Keyser Soze, an unseen, nefarious, and mythic underworld crime figure
 who coerces them into pulling off an important and highly dangerous
 job. The scenes that follow make 'The Usual Suspects' one of the most
 fascinating crime thrillers in cinema history.'''
-image = '''https://upload.wikimedia.org/wikipedia/en/thumb/9/9c/
-Usual_suspects_ver1.jpg/220px-Usual_suspects_ver1.jpg'''
+image = "https://upload.wikimedia.org/wikipedia/en/thumb/9/9c/Usual_suspects_ver1.jpg/220px-Usual_suspects_ver1.jpg"# noqa
 trailer = "https://www.youtube.com/watch?v=oiXdPolca5w"
 
 # Object instance
@@ -37,9 +35,7 @@ fights insomnia by attending disease support groups until he meets a
 kindred spirit -and soap salesman (Brad Pitt). Together they form Fight
 Club, where young men can exert their frustrations and angst upon one
 another.'''
-image = '''https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/
-Inception_%282010%29_theatrical_poster.jpg/220px-Inception_
-%282010%29_theatrical_poster.jpg'''
+image = "https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/Inception_%282010%29_theatrical_poster.jpg/220px-Inception_%282010%29_theatrical_poster.jpg"# noqa
 trailer = "https://www.youtube.com/watch?v=YoHD9XEInc0"
 
 # Object instance
@@ -53,8 +49,7 @@ Caleb arrives at the remote location he finds that he will have to
 participate in a strange and fascinating experiment in which he must
 interact with Ava, the world's first true artificial intelligence,
 housed in the body of a beautiful robot girl.'''
-image = '''https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/
-Ex-machina-uk-poster.jpg/220px-Ex-machina-uk-poster.jpg'''
+image = "https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Ex-machina-uk-poster.jpg/220px-Ex-machina-uk-poster.jpg"# noqa
 trailer = "https://www.youtube.com/watch?v=gyKqHOgMi4g"
 
 # Object instance
@@ -74,8 +69,7 @@ Games. It is here that he plans to plot his vengeance and gain his
 freedom. While all this is going on, his past lover, the Emperor's
 daughter (Nielsen) works to restore democratic rule with the help
 of a civil-minded senator (Jacobi).'''
-image = '''https://upload.wikimedia.org/wikipedia/en/thumb/8/8d/
-Gladiator_ver1.jpg/220px-Gladiator_ver1.jpg'''
+image = "https://upload.wikimedia.org/wikipedia/en/thumb/8/8d/Gladiator_ver1.jpg/220px-Gladiator_ver1.jpg"# noqa
 trailer = "https://www.youtube.com/watch?v=0BLZbrLogTo"
 
 # Object instance
