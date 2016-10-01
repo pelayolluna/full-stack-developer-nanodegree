@@ -1,0 +1,70 @@
+/* CSS Document */
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  color: #747704;
+}
+
+h2 {
+  color: #BCBBBB;
+  font-weight: bold;   
+}
+
+h3 {
+  text-transform: uppercase;
+  color: #747704;
+  font-weight: bold;
+}
+
+h4 {
+  font-weight: bold;
+}
+
+p {
+  color: #BCBBBB;
+}
+
+.text-muted {
+  color: #BCBBBB;
+}
+
+.text-thin {
+  font-weight: 100;
+}
+
+.title-super {
+  font-size: 60px;
+}
+
+.title-logo {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.grid {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+}
+
+.heading {
+  border-bottom: 3px solid #BCBBBB;
+  margin-bottom: 30px;
+}
+
+.img-responsive {
+  margin: 0 auto;
+}
