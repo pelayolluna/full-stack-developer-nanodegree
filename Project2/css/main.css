@@ -49,7 +49,7 @@ p {
   margin-bottom: 10px;
 }
 
-.grid {
+.container {
   margin: 0 auto;
   max-width: 1200px;
   width: 100%;
@@ -68,4 +68,8 @@ p {
 
 .img-responsive {
   margin: 0 auto;
+}
+
+.img-row-3 {
+  height: 50%;
 }
