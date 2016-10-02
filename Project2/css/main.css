@@ -55,12 +55,6 @@ p {
   width: 100%;
 }
 
-.row {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .heading {
   border-bottom: 3px solid #BCBBBB;
   margin-bottom: 30px;
