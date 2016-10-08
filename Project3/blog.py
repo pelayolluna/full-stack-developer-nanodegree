@@ -8,25 +8,17 @@ from string import letters
 import webapp2
 import jinja2
 
+import user
+
 from google.appengine.ext import db
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
                                autoescape = True)
 
-secret = 'fart'
-
 def render_str(template, **params):
     t = jinja_env.get_template(template)
     return t.render(params)
-
-def make_secure_val(val):
-    return '%s|%s' % (val, hmac.new(secret, val).hexdigest())
-
-def check_secure_val(secure_val):
-    val = secure_val.split('|')[0]
-    if secure_val == make_secure_val(val):
-        return val
 
 class BlogHandler(webapp2.RequestHandler):
     def write(self, *a, **kw):
@@ -69,7 +61,18 @@ class MainPage(BlogHandler):
       self.write('Hello, Udacity!')
 
 
-##### user stuff
+## User tools ##
+
+secret = 'BlackMirror'
+
+def make_secure_val(val):
+    return '%s|%s' % (val, hmac.new(secret, val).hexdigest())
+
+def check_secure_val(secure_val):
+    val = secure_val.split('|')[0]
+    if secure_val == make_secure_val(val):
+        return val
+
 def make_salt(length = 5):
     return ''.join(random.choice(letters) for x in xrange(length))
 
@@ -115,7 +118,7 @@ class User(db.Model):
             return u
 
 
-##### blog stuff
+## Blog tools ##
 
 def blog_key(name = 'default'):
     return db.Key.from_path('blogs', name)
