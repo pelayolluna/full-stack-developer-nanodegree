@@ -30,6 +30,15 @@ body {
     text-decoration: underline;
 }
 
+.gray-label {
+    color: gray;
+    text-decoration: none;
+}
+
+.gray-label:hover {
+    text-decoration: underline;
+}
+
 h2 {
     font-size: 24px;
     font-weight: bold;
@@ -84,6 +93,7 @@ input[type=submit] {
 .post-heading {
     position: relative;
     border-bottom: 3px solid #666;
+    margin-top: 7px;
 }
 
 .post-title {
@@ -101,5 +111,10 @@ input[type=submit] {
 
 .post-content {
     margin-top: 5px;
+}
+
+.post-like {
+    color: gray;
+    text-align: right;
 }
 

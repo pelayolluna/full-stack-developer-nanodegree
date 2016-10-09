@@ -8,8 +8,6 @@ from string import letters
 import webapp2
 import jinja2
 
-import user
-
 from google.appengine.ext import db
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -58,12 +56,13 @@ def render_post(response, post):
 
 class MainPage(BlogHandler):
   def get(self):
-      self.write('Hello, Udacity!')
+      #self.write('Hello, Udacity!')
+      self.redirect('/blog')
 
 
 ## User tools ##
 
-secret = 'BlackMirror'
+secret = '35fau-Va(XkZ}nVK7-!N~G^#Efuhdk'
 
 def make_secure_val(val):
     return '%s|%s' % (val, hmac.new(secret, val).hexdigest())
@@ -128,10 +127,15 @@ class Post(db.Model):
     content = db.TextProperty(required = True)
     created = db.DateTimeProperty(auto_now_add = True)
     last_modified = db.DateTimeProperty(auto_now = True)
+    user = db.ReferenceProperty(User, required = True)
 
     def render(self):
         self._render_text = self.content.replace('\n', '<br>')
         return render_str("post.html", p = self)
+
+class Like(db.Model):
+    post = db.ReferenceProperty(Post, required= True)
+    user = db.ReferenceProperty(User, required = True)
 
 class BlogFront(BlogHandler):
     def get(self):
@@ -170,20 +174,6 @@ class NewPost(BlogHandler):
         else:
             error = "subject and content, please!"
             self.render("newpost.html", subject=subject, content=content, error=error)
-
-
-###### Unit 2 HW's
-class Rot13(BlogHandler):
-    def get(self):
-        self.render('rot13-form.html')
-
-    def post(self):
-        rot13 = ''
-        text = self.request.get('text')
-        if text:
-            rot13 = text.encode('rot13')
-
-        self.render('rot13-form.html', text = rot13)
 
 
 USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
@@ -235,13 +225,8 @@ class Signup(BlogHandler):
     def done(self, *a, **kw):
         raise NotImplementedError
 
-class Unit2Signup(Signup):
-    def done(self):
-        self.redirect('/unit2/welcome?username=' + self.username)
-
 class Register(Signup):
     def done(self):
-        #make sure the user doesn't already exist
         u = User.by_name(self.username)
         if u:
             msg = 'That user already exists.'
@@ -264,7 +249,7 @@ class Login(BlogHandler):
         u = User.login(username, password)
         if u:
             self.login(u)
-            self.redirect('/blog')
+            self.redirect('/welcome')
         else:
             msg = 'Invalid login'
             self.render('login-form.html', error = msg)
@@ -274,31 +259,20 @@ class Logout(BlogHandler):
         self.logout()
         self.redirect('/blog')
 
-class Unit3Welcome(BlogHandler):
+class Welcome(BlogHandler):
     def get(self):
         if self.user:
             self.render('welcome.html', username = self.user.name)
         else:
             self.redirect('/signup')
 
-class Welcome(BlogHandler):
-    def get(self):
-        username = self.request.get('username')
-        if valid_username(username):
-            self.render('welcome.html', username = username)
-        else:
-            self.redirect('/unit2/signup')
-
 app = webapp2.WSGIApplication([('/', MainPage),
-                               ('/unit2/rot13', Rot13),
-                               ('/unit2/signup', Unit2Signup),
-                               ('/unit2/welcome', Welcome),
+                               ('/welcome', Welcome),
                                ('/blog/?', BlogFront),
                                ('/blog/([0-9]+)', PostPage),
                                ('/blog/newpost', NewPost),
                                ('/signup', Register),
                                ('/login', Login),
                                ('/logout', Logout),
-                               ('/unit3/welcome', Unit3Welcome),
                                ],
                               debug=True)

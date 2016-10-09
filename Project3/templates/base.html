@@ -13,17 +13,18 @@
 
   <div class="login-area">
     {% if user %}
-      {{user.name}} (<a class="login-link" href="/logout">logout</a>)
+      {{user.name}} (<a class="login-link" href="/logout">Logout</a>)
     {% else %}
-      <a class="login-link" href="/login">login</a>
+      <a class="login-link" href="/login">Login</a>
       |
-      <a class="login-link" href="/signup">signup</a>
+      <a class="login-link" href="/signup">Sign up</a>
     {% endif %}
   </div>
 
   <div id="content">
-  {% block content %}
-  {% endblock %}
+    <a class="gray-label" href="/blog/newpost">New post</a>
+    {% block content %}
+    {% endblock %}
   </div>
 </body>
 
