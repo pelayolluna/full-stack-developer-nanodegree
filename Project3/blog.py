@@ -43,7 +43,9 @@ class BlogHandler(webapp2.RequestHandler):
         self.set_secure_cookie('user_id', str(user.key().id()))
 
     def logout(self):
-        self.response.headers.add_header('Set-Cookie', 'user_id=; Path=/')
+        self.response.headers.add_header(
+            'Set-Cookie',
+            'user_id=; Path=/;')
 
     def initialize(self, *a, **kw):
         webapp2.RequestHandler.initialize(self, *a, **kw)
@@ -56,7 +58,6 @@ def render_post(response, post):
 
 class MainPage(BlogHandler):
   def get(self):
-      #self.write('Hello, Udacity!')
       self.redirect('/blog')
 
 
@@ -125,17 +126,14 @@ def blog_key(name = 'default'):
 class Post(db.Model):
     subject = db.StringProperty(required = True)
     content = db.TextProperty(required = True)
+    user_id = db.StringProperty(required = True)
     created = db.DateTimeProperty(auto_now_add = True)
     last_modified = db.DateTimeProperty(auto_now = True)
-    user = db.ReferenceProperty(User, required = True)
+#    like = db.StringProperty(required = False)
 
     def render(self):
         self._render_text = self.content.replace('\n', '<br>')
         return render_str("post.html", p = self)
-
-class Like(db.Model):
-    post = db.ReferenceProperty(Post, required= True)
-    user = db.ReferenceProperty(User, required = True)
 
 class BlogFront(BlogHandler):
     def get(self):
@@ -161,6 +159,8 @@ class NewPost(BlogHandler):
             self.redirect("/login")
 
     def post(self):
+        user_id = self.read_secure_cookie('user_id')
+
         if not self.user:
             self.redirect('/blog')
 
@@ -168,12 +168,12 @@ class NewPost(BlogHandler):
         content = self.request.get('content')
 
         if subject and content:
-            p = Post(parent = blog_key(), subject = subject, content = content)
+            p = Post(parent = blog_key(), subject = subject, content = content, user_id=user_id)
             p.put()
             self.redirect('/blog/%s' % str(p.key().id()))
         else:
-            error = "subject and content, please!"
-            self.render("newpost.html", subject=subject, content=content, error=error)
+            error = "Subject and content, please!"
+            self.render("newpost.html", subject=subject, content=content, error=error, user_id=user_id)
 
 
 USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
@@ -199,8 +199,7 @@ class Signup(BlogHandler):
         self.verify = self.request.get('verify')
         self.email = self.request.get('email')
 
-        params = dict(username = self.username,
-                      email = self.email)
+        params = dict(username = self.username, email = self.email)
 
         if not valid_username(self.username):
             params['error_username'] = "That's not a valid username."
@@ -257,7 +256,7 @@ class Login(BlogHandler):
 class Logout(BlogHandler):
     def get(self):
         self.logout()
-        self.redirect('/blog')
+        self.redirect('/signup')
 
 class Welcome(BlogHandler):
     def get(self):
@@ -266,13 +265,80 @@ class Welcome(BlogHandler):
         else:
             self.redirect('/signup')
 
+class EditPost(BlogHandler):
+    def get(self, post_id):
+        key = db.Key.from_path('Post', int(post_id), parent=blog_key())
+        post = db.get(key)
+        user_id = self.read_secure_cookie('user_id')
+        error = ''
+        info = ''
+
+        if not post:
+            self.redirect("/")
+            return
+
+        if self.read_secure_cookie('user_id') == '':
+            self.redirect("/login")
+
+        if post.user_id != user_id:
+            error = 'You are not allowed to edit this post.'
+            self.render("infopost.html", info = info, error = error)
+        else:        
+            self.render("editpost.html", post = post, error = error)
+
+    def post(self, post_id):
+        key = db.Key.from_path('Post', int(post_id), parent=blog_key())
+        post = db.get(key)
+        user_id = self.read_secure_cookie('user_id')
+        subject = self.request.get('subject')
+        content = self.request.get('content')
+        error = ''
+        info = ''
+
+        if subject and content and post.user_id == user_id:
+            post.subject = subject
+            post.content = content
+            post.put()
+            redirect_id = post.key().id()
+            info = 'Post edited!'
+            self.render("infopost.html", error = error, info=info)
+        else:
+            error = "Subject and content, please!"
+            self.render("editpost.html", post = post, error=error)
+
+class DeletePost(BlogHandler):
+    def get(self, post_id):
+        key = db.Key.from_path('Post', int(post_id), parent=blog_key())
+        post = db.get(key)
+        post.subject
+        error = ''
+        info=''
+        user_id = self.read_secure_cookie('user_id')
+
+        if self.read_secure_cookie('user_id') == '':
+            self.redirect("/login")
+
+        if not post:
+            self.redirect("/")
+            return
+
+        if post.user_id != user_id:
+            error = 'You are not allowed to delete this post.'
+        else:
+            db.delete(key)
+            info='Post Deleted!'
+
+        self.render("infopost.html", error = error, info=info)
+
 app = webapp2.WSGIApplication([('/', MainPage),
-                               ('/welcome', Welcome),
                                ('/blog/?', BlogFront),
                                ('/blog/([0-9]+)', PostPage),
                                ('/blog/newpost', NewPost),
+                               ('/blog/editpost/([0-9]+)', EditPost),
+                               ('/blog/deletepost/([0-9]+)', DeletePost),
                                ('/signup', Register),
                                ('/login', Login),
                                ('/logout', Logout),
+                               ('/welcome', Welcome),
                                ],
                               debug=True)
