@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  {% if error %}
+
+    <div>
+      <p>{{error}}</p>
+    </div>
+
+  {% else %}
+
+    <div>
+      <p>{{info}}</p>
+    </div>
+
+  {% endif %}
+
+  <a class="gray-label" href="/blog">Go to blog</a>
+
+{% endblock %}

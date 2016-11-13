@@ -13,7 +13,9 @@
     {{p._render_text | safe}}
   </div>
 
-  <div class="post-like">
-    <a class="gray-label" href="">Like</a>
+  <div class="post-info">
+    <a class="gray-label" href="/blog/editpost/{{p.key().id()}}">Edit</a> |
+    <a class="gray-label" href="/blog/deletepost/{{p.key().id()}}">Delete</a> | 
+    <a class="gray-label" href="">Like</a> 
   </div>
 </div>
