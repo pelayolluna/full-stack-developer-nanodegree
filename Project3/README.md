@@ -4,6 +4,8 @@
 
 In this project I have built a multi user blog (along the lines of Medium) where users can sign in and post blog posts as well as 'Like' and 'Comment' on other posts made on the blog. I have been hosting this blog on Google App Engine and I have been also be creating an authentication system for users to be able to register and sign in and then create blog posts.
 
+This app is currently live at https://multi-user-blog-145820.appspot.com/blog
+
 ## Usage
 
 To run this code, you must first have the [Google App Engine SDK for Python](https://cloud.google.com/appengine/downloads) downloaded and installed.
