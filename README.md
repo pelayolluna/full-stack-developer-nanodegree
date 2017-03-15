@@ -4,7 +4,7 @@
 This repository contains project work for Udacity's [Full Stack Web Developer Nanodegree](https://www.udacity.com/course/nd004).
 
 ## Projects
-- **Project 1** - Movie Trailer Website
+- [**Project 1** - Movie Trailer Website](https://github.com/pelayolluna/full-stack-developer-nanodegree/tree/master/Project1)
 - **Project 2** - Build a Portfolio Site
 - **Project 3** - Multi User Blog
 - **Project 4** - Tournament Results
